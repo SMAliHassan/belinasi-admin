@@ -1,0 +1,116 @@
+.order {
+  flex: 5;
+  padding: 20px;
+}
+
+.orderTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.orderContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.orderShow {
+  flex: 3;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  min-height: 50vh;
+}
+
+.orderItems {
+  flex: 4;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin-left: 20px;
+}
+
+.orderShowTop {
+  display: flex;
+  align-items: center;
+}
+
+.orderShowImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.orderShowTopTitle {
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 20px; */
+}
+
+.orderShowUsername {
+  font-weight: 600;
+}
+
+.orderShowUserTitle {
+  font-weight: 300;
+}
+
+.orderShowBottom {
+  margin-top: 20px;
+}
+
+.orderShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(175, 170, 170);
+}
+
+.orderShowInfo {
+  display: flex;
+  align-items: center;
+  margin: 20px 0px;
+  color: #444;
+}
+
+.orderShowIcon {
+  font-size: 16px !important;
+}
+
+.orderShowInfoTitle {
+  margin-left: 10px;
+}
+
+.orderItemsTitle {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.orderItemsForm {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.orderField {
+  font-size: 1.1rem;
+  padding-bottom: 0.4rem;
+}
+.orderField span {
+  font-weight: 600;
+}
+
+a {
+  color: var(--secondary-color);
+}

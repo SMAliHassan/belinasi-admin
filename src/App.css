@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+:root {
+  --primary-color: #061738;
+  --secondary-color: #ee2761;
+  --secondary-dark-color: #c92150;
+  --yellow-color: #ffc107;
+  --text-dark-gray-color: #646464;
+  --text-gray-color: #b9b9b9;
+  --text-light-color: #c7c7c7;
+  --white-color: #ffffff;
+  --bg-color: #fff;
+  --bg-light-color: #0c1220;
+  --ofwhite-color: #b4b4b4;
+  --black-color: #ffffff;
+  --light-color: #000000;
+  --light-color2: #d4d4d4;
+  --dark-color: #dbdbdb;
+  --sky-color: #647589;
+  --border-color: #202020;
+  --border-color2: #242424;
+  --border-color3: #2c2c2c;
+  --border-dark: #dbcccc;
+  --bg-gray-color: #000000;
+  --gray-color: #030303;
+  --gray-color2: #080808;
+  --font-jost: "Jost", sans-serif;
+}
+
+.container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
