@@ -23,50 +23,15 @@ export default function Product() {
       `/products/analytics/${productId}/${type}/${duration}`
     );
     setAnalytics(data.data);
-
-    console.log(data.data);
   };
-
-  // const productData = [
-  //   {
-  //     name: "Jan",
-  //     Sales: 1040,
-  //   },
-  //   {
-  //     name: "Feb",
-  //     Sales: 3000,
-  //   },
-  //   {
-  //     name: "Mar",
-  //     Sales: 4180,
-  //   },
-  //   {
-  //     name: "Apr",
-  //     Sales: 3500,
-  //   },
-  //   {
-  //     name: "Apr",
-  //     Sales: 6000,
-  //   },
-  //   {
-  //     name: "Apr",
-  //     Sales: 6500,
-  //   },
-  //   {
-  //     name: "Apr",
-  //     Sales: 1234,
-  //   },
-  //   {
-  //     name: "Apr",
-  //     Sales: 2134,
-  //   },
-  // ];
 
   useEffect(() => {
     (async function () {
       try {
         const { data } = await belinasiApi.get(`/products/${productId}`);
         setProduct(data.data.product);
+
+        console.log(data.data.product);
 
         await getAnalytics("week", 60);
 
@@ -120,76 +85,6 @@ export default function Product() {
                 setPageStatus("loaded");
               }}
             />
-            {/* <form
-              onSubmit={async () => {
-                setPageStatus("loading");
-                await getAnalytics();
-                setPageStatus("loaded");
-              }}
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                maxWidth: "22rem",
-              }}
-            >
-              <div>
-                <label htmlFor="duration" style={{ paddingRight: "0.5rem" }}>
-                  Duration:
-                </label>
-                <select
-                  name="duration"
-                  value={analyticsOptions.duration}
-                  onChange={(e) => {
-                    setAnalyticsOptions({
-                      ...analyticsOptions,
-                      duration: e.target.value,
-                    });
-                  }}
-                >
-                  <option value="7">1 Week</option>
-                  <option value="14">2 Weeks</option>
-                  <option value="30">1 Month</option>
-                  <option value="60">2 Months</option>
-                  <option value="90">3 Months</option>
-                  <option value="180">6 Months</option>
-                  <option value="365">1 Year</option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="duration-type"
-                  style={{ paddingRight: "0.5rem" }}
-                >
-                  Type:
-                </label>
-                <select
-                  name="duration-type"
-                  onChange={(e) =>
-                    setAnalyticsOptions({
-                      ...analyticsOptions,
-                      type: e.target.value,
-                    })
-                  }
-                  value={analyticsOptions.type}
-                >
-                  <option value="day">Daily</option>
-                  <option value="week">Weekly</option>
-                  <option value="month">Monthly</option>
-                </select>
-              </div>
-              <button
-                type="submit"
-                style={{
-                  cursor: "pointer",
-                  color: "#fff",
-                  background: "var(--secondary-color)",
-                  border: "none",
-                }}
-              >
-                Update
-              </button>
-            </form> */}
 
             <h3
               style={{ fontSize: "1.3rem", paddingTop: "0.5rem" }}

@@ -15,6 +15,7 @@ import Order from "./pages/order/Order";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Analytics from "./pages/analytics/Analytics";
 import Login from "./pages/login/Login";
+import Mail from "./pages/mail/Mail";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
 
           <Route exact path="/admin/login">
             <Login />
+          </Route>
+
+          <Route exact path="/admin/mail">
+            <Mail />
           </Route>
 
           <Route path="/admin/users/:userId">

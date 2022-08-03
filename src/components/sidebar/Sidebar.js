@@ -82,10 +82,13 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
+            <Link to="/admin/mail" className="link">
+              <li className="sidebarListItem">
+                <MailOutline className="sidebarIcon" />
+                Mail
+              </li>
+            </Link>
+
             <li className="sidebarListItem">
               <DynamicFeed className="sidebarIcon" />
               Feedback

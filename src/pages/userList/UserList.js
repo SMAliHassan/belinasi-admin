@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { DataGrid } from "@material-ui/data-grid";
 import { toast } from "react-toastify";
+import { EmailOutlined } from "@material-ui/icons";
 
 import Preloader from "../../components/Preloader/";
 import belinasiApi from "../../apis/belinasiApi";
@@ -11,7 +12,12 @@ export default function UserList() {
   const history = useHistory();
 
   const [users, setUsers] = useState([]);
+  const [selected, setSelected] = useState([]);
   const [pageStatus, setPageStatus] = useState("loading");
+
+  useEffect(() => {
+    localStorage.setItem("emailUsers", JSON.stringify(selected));
+  }, [selected]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,8 +27,6 @@ export default function UserList() {
         const { data } = await belinasiApi.get("/users");
 
         setUsers(data.data.users);
-
-        console.log(data.data.users);
 
         setPageStatus("loaded");
       } catch (err) {
@@ -43,10 +47,6 @@ export default function UserList() {
     })();
   }, []);
 
-  // const handleDelete = (id) => {
-  //   setUsers(data.filter((item) => item.id !== id));
-  // };
-
   const columns = [
     {
       field: "id",
@@ -58,14 +58,6 @@ export default function UserList() {
       field: "name",
       headerName: "User",
       width: 180,
-      // renderCell: (params) => {
-      //   return (
-      //     <div className="userListUser">
-      //       <img className="userListImg" src={params.row.avatar} alt="" />
-      //       {params.row.username}
-      //     </div>
-      //   );
-      // },
     },
     { field: "email", headerName: "Email", width: 220, sortable: false },
     {
@@ -105,13 +97,34 @@ export default function UserList() {
       <Preloader status={pageStatus} />
 
       <div className="userList">
-        <h1 style={{ marginBottom: "1.2rem", fontSize: "2.2rem" }}>Users</h1>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <h1 style={{ marginBottom: "1.2rem", fontSize: "2.2rem" }}>Users</h1>
+
+          {selected.length ? (
+            <Link
+              to={`/admin/mail`}
+              className="primary__btn"
+              style={{
+                margin: "0 auto",
+                fontSize: "1.1rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.2rem",
+              }}
+            >
+              <EmailOutlined /> Send Email to selected ({selected.length})
+            </Link>
+          ) : null}
+        </div>
 
         <DataGrid
           rows={users}
           disableSelectionOnClick
           columns={columns}
           pageSize={50}
+          onSelectionModelChange={({ selectionModel }) =>
+            setSelected(selectionModel)
+          }
           checkboxSelection
         />
       </div>
