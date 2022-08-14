@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Link, useHistory } from "react-router-dom";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
+// import { DeleteOutline } from "@material-ui/icons";
 
+import { renderProductImages } from "../../utils/productUtils";
 import Preloader from "../../components/Preloader";
 import belinasiApi from "../../apis/belinasiApi";
 import "./productList.css";
@@ -17,9 +18,7 @@ export default function ProductList() {
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await belinasiApi.get(
-          "/products?limit=99999999&fields=name,id,status,campaign,price,images,type,sales"
-        );
+        const { data } = await belinasiApi.get("/products?limit=99999999");
 
         setProducts(data.data.products);
 
@@ -50,7 +49,7 @@ export default function ProductList() {
     {
       field: "id",
       headerName: "ID",
-      width: 110,
+      width: 100,
       sortable: false,
     },
 
@@ -60,12 +59,15 @@ export default function ProductList() {
       width: 250,
       renderCell: (params) => {
         return (
-          <div className="productListItem">
-            <img
+          <div className="productListItem" style={{ height: "2rem" }}>
+            {/* <img
               className="productListImg"
-              src={params.row.images[0]}
+              src={params.row.designs.front}
               alt="prod-img"
-            />
+            /> */}
+            <div className="productListImg">
+              {renderProductImages(params.row)[0]}
+            </div>
             {params.row.name}
           </div>
         );
@@ -82,16 +84,19 @@ export default function ProductList() {
     {
       field: "campaign",
       headerName: "Campaign",
-      width: 170,
+      width: 155,
       valueGetter: (params) => {
         return params.row.campaign.title;
       },
     },
     {
-      field: "status",
+      field: "active",
       headerName: "Status",
-      width: 110,
+      width: 95,
       sortable: false,
+      valueGetter: (params) => {
+        return params.row.active ? "Active" : "Inactive";
+      },
     },
     {
       field: "sales",
@@ -99,9 +104,14 @@ export default function ProductList() {
       width: 110,
     },
     {
+      field: "clicks",
+      headerName: "Clicks",
+      width: 107,
+    },
+    {
       field: "price",
       headerName: "Price",
-      width: 120,
+      width: 115,
       valueGetter: (params) => {
         return params.row.price + " Rp";
       },
@@ -111,7 +121,7 @@ export default function ProductList() {
       headerName: "Action",
       sortable: false,
       filterable: false,
-      width: 95,
+      width: 92,
       renderCell: (params) => {
         return (
           <>

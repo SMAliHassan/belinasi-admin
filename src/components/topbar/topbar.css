@@ -1,6 +1,6 @@
 .topbar {
   width: 100%;
-  height: 50px;
+  height: 62px;
   background-color: #fff;
   position: sticky;
   top: 0;
@@ -49,9 +49,39 @@
   font-size: 10px;
 }
 
-.topAvatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.popup-content {
+  border-radius: 0.5rem;
+  padding: 1rem 0.8rem;
+  max-width: 30rem;
+}
+@media (min-width: 768px) {
+  .popup-content {
+    padding: 2rem;
+  }
+}
+.modal {
+  text-align: center;
+}
+.modal__btn-container {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: 1.7rem auto 1rem auto;
+}
+.modal__btn-container button {
+  font-size: 1.1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.3rem;
+  color: #fff;
   cursor: pointer;
+  transition: 0.3s transform;
+}
+.modal__btn-container button:hover {
+  transform: scale(1.1);
+}
+.modal__btn-container button:first-child {
+  color: #555;
+}
+.modal__btn-container button:last-child {
+  background-color: red;
 }

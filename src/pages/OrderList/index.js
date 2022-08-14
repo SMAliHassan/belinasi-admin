@@ -49,9 +49,7 @@ export default function OrderList() {
       headerName: "Date",
       width: 140,
       sortComparator: (v1, v2) => {
-        return new Date(v1).getMilliseconds() > new Date(v2).getMilliseconds()
-          ? -1
-          : 1;
+        return new Date(v1).getTime() > new Date(v2).getTime() ? -1 : 1;
       },
       valueGetter: (params) => {
         return new Date(params.row.orderDate).toLocaleDateString("en-US", {

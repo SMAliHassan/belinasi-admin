@@ -82,6 +82,9 @@ const Mail = () => {
 
       setPageStatus("loaded");
 
+      localStorage.setItem("emailUsers", JSON.stringify([]));
+      setSelected([]);
+
       toast.success(data.message);
     } catch (err) {
       setPageStatus("loaded");

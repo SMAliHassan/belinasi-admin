@@ -1,15 +1,15 @@
-.product {
+.campaign {
   flex: 5;
   padding: 20px;
 }
 
-.productTitleContainer {
+.campaignTitleContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.productAddButton {
+.campaignAddButton {
   width: 80px;
   border: none;
   padding: 5px;
@@ -20,25 +20,31 @@
   cursor: pointer;
 }
 
-.productTop {
+.campaignTop {
   display: flex;
 }
 
-.productTopLeft {
-  flex: 2;
+.campaignTopLeft {
+  flex: 1;
 }
-.productTopRight {
+.campaignTopRight {
   flex: 1;
 }
 
-.productTopRight {
+.campaignTopLeft {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.campaignTopRight {
   padding: 20px;
   margin: 20px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
-.productImgContainer {
+.campaignImgContainer {
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   margin: 20px;
@@ -46,80 +52,80 @@
   display: flex;
   gap: 10px;
 }
-.productDesigns {
+.campaignDesigns {
   flex: 1;
   display: flex;
   gap: 10px;
 }
-.productDesigns img {
+.campaignDesigns img {
   display: block;
   border: 1px dotted var(--secondary-color);
 }
-.productImgs {
+.campaignImgs {
   flex: 1;
   display: flex;
 }
 
-.productInfoTop {
+.campaignInfoTop {
   display: flex;
   align-items: center;
 }
 
-.productName {
+.campaignName {
   font-weight: 600;
 }
 
-.productInfoBottom {
+.campaignInfoBottom {
   margin-top: 10px;
 }
 
-.productInfoItem {
+.campaignInfoItem {
   width: 400px;
   display: grid;
   grid-template-columns: 2fr 5fr;
   line-height: 1.5;
 }
 
-.productInfoKey {
+.campaignInfoKey {
   font-weight: 600;
 }
-.productInfoValue {
+.campaignInfoValue {
 }
 
-.productBottom {
+.campaignBottom {
   padding: 20px;
   margin: 20px;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
 
-.productForm {
+.campaignForm {
   display: flex;
   justify-content: space-between;
 }
 
-.productFormLeft {
+.campaignFormLeft {
   display: flex;
   flex-direction: column;
 }
 
-.productFormLeft > label {
+.campaignFormLeft > label {
   margin-bottom: 10px;
   color: gray;
 }
 
-.productFormLeft > input {
+.campaignFormLeft > input {
   margin-bottom: 10px;
   border: none;
   padding: 5px;
   border-bottom: 1px solid gray;
 }
 
-.productFormLeft > select {
+.campaignFormLeft > select {
   margin-bottom: 10px;
 }
 
-.productUploadImg {
+.campaignUploadImg {
   width: 100px;
   height: 100px;
   border-radius: 10px;
@@ -127,18 +133,18 @@
   margin-right: 20px;
 }
 
-.productFormRight {
+.campaignFormRight {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
-.productUpload {
+.campaignUpload {
   display: flex;
   align-items: center;
 }
 
-.productButton {
+.campaignButton {
   border: none;
   padding: 5px;
   border-radius: 5px;
@@ -146,4 +152,22 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
+}
+
+.campaignImages {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.campaignImages img {
+  width: 20rem;
+  aspect-ratio: 16 / 10;
+}
+
+.campaignVideo {
+  padding: 20px;
+  margin: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }

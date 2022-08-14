@@ -4,6 +4,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import Chart from "../../components/chart/Chart";
 import { Publish } from "@material-ui/icons";
 
+import { renderProductImages } from "../../utils/productUtils";
 import belinasiApi from "../../apis/belinasiApi";
 import ChartSetting from "../../components/ChartSetting";
 import Preloader from "../../components/Preloader";
@@ -14,7 +15,7 @@ export default function Product() {
   const history = useHistory();
 
   const [product, setProduct] = useState();
-  const [analytics, setAnalytics] = useState();
+  const [analytics, setAnalytics] = useState({ sales: [] });
 
   const [pageStatus, setPageStatus] = useState("loading");
 
@@ -30,8 +31,6 @@ export default function Product() {
       try {
         const { data } = await belinasiApi.get(`/products/${productId}`);
         setProduct(data.data.product);
-
-        console.log(data.data.product);
 
         await getAnalytics("week", 60);
 
@@ -56,24 +55,20 @@ export default function Product() {
 
   if (pageStatus === "loading") return <Preloader status={pageStatus} />;
 
-  const imagesMarkup = product.images.map((img) => {
-    return <img src={img} alt="" className="productInfoImg" />;
+  const imagesMarkup = renderProductImages(product).map((img) => {
+    return <div className="productInfoImg">{img} </div>;
   });
 
   return (
     <div className="product">
       <div className="productTitleContainer">
         <h1 className="productTitle">Product</h1>
-        <Link to="/newproduct">
-          <button className="productAddButton">Create</button>
-        </Link>
       </div>
       <div className="productTop">
         <div className="productTopLeft">
           <Chart
             data={analytics.sales}
             dataKey="sold"
-            // title="Sales Performance"
             fontSize={analytics.sales.length > 7 ? "0.8rem" : "1rem"}
           >
             <ChartSetting
@@ -96,30 +91,74 @@ export default function Product() {
         </div>
         <div className="productTopRight">
           <div className="productInfoTop">
-            {imagesMarkup}
-            <span className="productName">{product.name}</span>
+            <span className="productName" style={{ paddingRight: "5rem" }}>
+              {product.name} ({product.type})
+            </span>
+            {product.id}
           </div>
           <div className="productInfoBottom">
+            {/* <div className="productInfoItem">
+              <span className="productInfoKey">ID:</span>
+              <span className="productInfoValue"></span>
+            </div> */}
             <div className="productInfoItem">
-              <span className="productInfoKey">id:</span>
-              <span className="productInfoValue">{product.id}</span>
-            </div>
-            <div className="productInfoItem">
-              <span className="productInfoKey">sales:</span>
+              <span className="productInfoKey">Sales:</span>
               <span className="productInfoValue">{product.sales}</span>
             </div>
             <div className="productInfoItem">
-              <span className="productInfoKey">active:</span>
-              <span className="productInfoValue">yes</span>
+              <span className="productInfoKey">Clicks:</span>
+              <span className="productInfoValue">{product.clicks}</span>
             </div>
             <div className="productInfoItem">
-              <span className="productInfoKey">in stock:</span>
-              <span className="productInfoValue">no</span>
+              <span className="productInfoKey">Conv. Rate:</span>
+              <span className="productInfoValue">
+                {product.clicks
+                  ? ((+product.sales / +product.clicks) * 100).toFixed(3)
+                  : 0}
+                %
+              </span>
+            </div>
+            <div className="productInfoItem">
+              <span className="productInfoKey">Views:</span>
+              <span className="productInfoValue">{product.views}</span>
+            </div>
+            <div className="productInfoItem">
+              <span className="productInfoKey">Active:</span>
+              <span className="productInfoValue">
+                {product.active ? "True" : "False"}
+              </span>
+            </div>
+            <div className="productInfoItem">
+              <span className="productInfoKey">Campaign:</span>
+              <span className="productInfoValue">
+                <Link to={`/admin/campaigns/${product.campaign.id}`}>
+                  {product.campaign.title}
+                </Link>
+              </span>
+            </div>
+            <div className="productInfoItem">
+              <span className="productInfoKey">Creator:</span>
+              <span className="productInfoValue">
+                <Link to={`/admin/users/${product.creator.id}`}>
+                  {product.creator.name}
+                </Link>
+              </span>
             </div>
           </div>
         </div>
       </div>
-      <div className="productBottom">
+
+      <div className="productImgContainer">
+        <div className="productImgs"> {imagesMarkup}</div>
+        <div className="productDesigns">
+          <img src={product.designs.front} alt="" style={{ width: "50%" }} />
+          {product.designs.back ? (
+            <img src={product.designs.back} alt="" style={{ width: "50%" }} />
+          ) : null}
+        </div>
+      </div>
+
+      {/* <div className="productBottom">
         <form className="productForm">
           <div className="productFormLeft">
             <label>Product Name</label>
@@ -150,7 +189,7 @@ export default function Product() {
             <button className="productButton">Update</button>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { Publish } from "@material-ui/icons";
 import { toast } from "react-toastify";
 
 import belinasiApi from "../../apis/belinasiApi";
-import Chart from "../../components/chart/Chart";
 import Preloader from "../../components/Preloader";
 import "./order.css";
 

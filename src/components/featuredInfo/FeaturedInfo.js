@@ -64,7 +64,7 @@ export default function FeaturedInfo({ sales, orders, visits }) {
       </div> */}
 
       <FeaturedItem
-        value={orders.orders + " Rp"}
+        value={orders.orders}
         increment={orders.increment}
         title={"Orders"}
         sub="this month (till now)"

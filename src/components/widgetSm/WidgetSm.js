@@ -5,8 +5,6 @@ import "./widgetSm.css";
 
 export default function WidgetSm({ users }) {
   const renderUsers = () => {
-    console.log(users);
-
     return users.map((user) => {
       return (
         <li className="widgetSmListItem">

@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./index.css";
 
 const Preloader = ({ status }) => {
+  useEffect(() => {
+    if (status === "loading") {
+      document.querySelector("html").style.overflowY = "hidden";
+    } else {
+      document.querySelector("html").style.overflowY = "auto";
+    }
+
+    return () => {
+      document.querySelector("html").style.overflowY = "auto";
+    };
+  }, [status]);
+
   return (
-    <div id="preloader" className={status}>
+    <div
+      id="preloader"
+      className={status}
+      style={{ pointerEvents: status === "loading" ? "all" : "none" }}
+    >
       <div id="ctn-preloader" class="ctn-preloader">
         <div class="animation-preloader">
           <div class="spinner"></div>

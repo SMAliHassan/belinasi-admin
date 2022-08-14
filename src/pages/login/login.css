@@ -19,18 +19,18 @@
 }
 .login__form > button {
   background-color: var(--secondary-color);
-  border: 1px solid transparent;
   color: white;
   font-size: 1.15rem;
   border-radius: 0.4rem;
   padding: 0.3rem 0.7rem;
   cursor: pointer;
+  border: 1px solid transparent !important;
   transition: all 0.3s;
 }
 .login__form > button:hover {
   color: var(--secondary-color);
   background: white;
-  border: 1px solid var(--secondary-color);
+  border-color: var(--secondary-color) !important;
 }
 
 @media (min-width: 768px) {

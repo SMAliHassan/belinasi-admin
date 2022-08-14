@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import Preloader from "../../components/Preloader/";
 import belinasiApi from "../../apis/belinasiApi";
 import "./login.css";
 
@@ -10,16 +11,21 @@ const Login = () => {
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [pageStatus, setPageStatus] = useState("loading");
+  const [pageStatus, setPageStatus] = useState("loaded");
 
   const login = async (e) => {
     try {
       e.preventDefault();
 
-      await belinasiApi.post("/users/login", {
+      setPageStatus("loading");
+
+      const { data } = await belinasiApi.post("/users/login", {
         email,
         password,
       });
+
+      localStorage.setItem("adminId", data.data.user.id);
+      setPageStatus("loaded");
 
       toast.success("Welcome back admin!");
 
@@ -34,31 +40,35 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <h1>Admin Login</h1>
+    <React.Fragment>
+      <Preloader status={pageStatus} />
 
-      <form className="login__form" onSubmit={login}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            placeholder="username@domain.com"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+      <div className="login">
+        <h1>Admin Login</h1>
 
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            placeholder="pasword1234"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <form className="login__form" onSubmit={login}>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="text"
+              placeholder="username@domain.com"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <button>Login</button>
-      </form>
-    </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              placeholder="pasword1234"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <button>Login</button>
+        </form>
+      </div>
+    </React.Fragment>
   );
 };
 

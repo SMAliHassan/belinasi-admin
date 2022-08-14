@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import belinasiApi from "./apis/belinasiApi";
 import Sidebar from "./components/sidebar/Sidebar";
 import Topbar from "./components/topbar/Topbar";
 import "./App.css";
@@ -10,7 +11,9 @@ import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import OrderList from "./pages/OrderList/";
+import CampaignList from "./pages/CampaignList/";
 import Product from "./pages/product/Product";
+import Campaign from "./pages/Campaign/Campaign";
 import Order from "./pages/order/Order";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Analytics from "./pages/analytics/Analytics";
@@ -18,6 +21,18 @@ import Login from "./pages/login/Login";
 import Mail from "./pages/mail/Mail";
 
 function App() {
+  useEffect(() => {
+    window.addEventListener("beforeunload", async (e) => {
+      e.returnValue = "You will be logged out!";
+
+      await belinasiApi.delete("/users/logout");
+
+      localStorage.removeItem("adminId");
+
+      return "onbeforeunload";
+    });
+  }, []);
+
   return (
     <Router>
       <Topbar />
@@ -62,6 +77,13 @@ function App() {
           </Route>
           <Route path="/admin/orders">
             <OrderList />
+          </Route>
+
+          <Route path="/admin/campaigns/:campaignId">
+            <Campaign />
+          </Route>
+          <Route path="/admin/campaigns">
+            <CampaignList />
           </Route>
 
           <Route path="/admin/newproduct">
